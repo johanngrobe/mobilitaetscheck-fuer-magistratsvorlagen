@@ -10,11 +10,15 @@ backend/*/*/__pycache__/
 backend/*/*/*/__pycache__/
 backend/*/*/*/*/__pycache__/
 backend/*.pyc
+backend/db_backups
+backend/db_backups/*.dump
+backend/.vscode/
+
 
 
 # Frontend
 # Logs
-frontend/app/.gitignore
+frontend/.gitignore
 frontend/logs
 frontend/*.log
 frontend/npm-debug.log*
@@ -29,6 +33,7 @@ frontend/dist
 frontend/dist-ssr
 frontend/coverage
 frontend/*.local
+frontend/.vscode
 
 
 # Editor directories and files

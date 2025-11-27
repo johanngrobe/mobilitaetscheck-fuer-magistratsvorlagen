@@ -9,6 +9,7 @@ from pydantic import (
 )
 from pydantic_core import MultiHostUrl
 from pydantic_settings import BaseSettings, SettingsConfigDict
+import os
 
 
 def parse_list(v: Any) -> list[str] | str:
@@ -21,31 +22,32 @@ def parse_list(v: Any) -> list[str] | str:
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=(
+            ".env"
+            if not os.getenv("DOCKER_ENV")  # if DOCKER_ENV is NOT set → load ../.env
+            else None
+        ),
         env_ignore_empty=True,
         extra="ignore",
     )
 
-    # Project Settings
-    PROJECT_NAME: str
-
     # Database Settings
-    POSTGRES_SERVER: str
-    POSTGRES_PORT: int = 5432
-    POSTGRES_USER: str
-    POSTGRES_PASSWORD: str
-    POSTGRES_DB: str
+    DB_HOSTNAME: str = "localhost"
+    DB_PORT: int = 5432
+    DB_USERNAME: str
+    DB_PASSWORD: str
+    DB_NAME: str
 
     @computed_field  # type: ignore[prop-decorator]
     @property
     def SQLALCHEMY_DATABASE_URI(self) -> PostgresDsn:
         return MultiHostUrl.build(
             scheme="postgresql+psycopg",
-            username=self.POSTGRES_USER,
-            password=self.POSTGRES_PASSWORD,
-            host=self.POSTGRES_SERVER,
-            port=self.POSTGRES_PORT,
-            path=self.POSTGRES_DB,
+            username=self.DB_USERNAME,
+            password=self.DB_PASSWORD,
+            host=self.DB_HOSTNAME,
+            port=self.DB_PORT,
+            path=self.DB_NAME,
         )
 
     # User Settings
@@ -55,8 +57,8 @@ class Settings(BaseSettings):
     JWT_LIFETIME_SECONDS: int = 60 * 60 * 12  # 12 hours
 
     # FastAPI Settings
-    DOMAIN: str
-    FRONTEND_HOST: str
+    HOST_URL: str = "http://localhost:8000"
+    FRONTEND_DIR: str = "../frontend/dist"
     API_V1_STR: str = "/api/v1"
     ENVIRONMENT: Literal["local", "staging", "production"] = "local"
     BACKEND_CORS_ORIGINS: Annotated[list[AnyUrl] | str, BeforeValidator(parse_list)] = (
@@ -66,9 +68,20 @@ class Settings(BaseSettings):
     @computed_field  # type: ignore[prop-decorator]
     @property
     def all_cors_origins(self) -> list[str]:
-        return [str(origin).rstrip("/") for origin in self.BACKEND_CORS_ORIGINS] + [
-            self.FRONTEND_HOST
-        ]
+        origins = set(str(origin).rstrip("/") for origin in self.BACKEND_CORS_ORIGINS)
+
+        # Always add HOST_URL (frontend or backend)
+        host = self.HOST_URL.rstrip("/")
+        origins.add(host)
+
+        # Local development → add Vite dev server
+        if "localhost" in host or "127.0.0.1" in host:
+            origins.add("http://localhost:5173")
+            origins.add(
+                "http://localhost:8000"
+            )  # ensure backend origin is always included
+
+        return list(origins)
 
     # Mail Settings
     MAIL_USERNAME: str

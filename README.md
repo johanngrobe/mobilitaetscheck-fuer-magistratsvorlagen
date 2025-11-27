@@ -7,12 +7,12 @@
 
 </div>
 
-## Table of Contents
+## Inhaltsverzeichnis
 
 - [Dokumentation](https://mobilitaetscheck-docs.github.com)
-- [Was ist der Mobilitätscheck für Magistratsvorlagen?](#was-ist-mobilitaetscheck)
-- [Förderung](#foerderung)
-- [License](#Lizenz)
+- [Was ist der Mobilitätscheck für Magistratsvorlagen?](#was-ist-der-mobilitätscheck-für-magistratsvorlagen)
+- [Förderung](#förderung)
+- [License](#lizenz)
 
 ## Was ist der Mobilitätscheck für Magistratsvorlagen?
 

@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 
 from app.core.deps import auth_backend, fastapi_users
+from app.core.config import settings
 from app.api.routers import (
     bool_erweitert,
     gemeinde_gebiet,

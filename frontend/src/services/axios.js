@@ -1,6 +1,7 @@
 import axios from 'axios'
 import applyCaseMiddleware from 'axios-case-converter'
 import axiosRetry from 'axios-retry'
+import { API_BASE_URL } from '@/utils/config'
 
 axiosRetry(axios, {
   retries: 3, // Retry up to 3 times
@@ -16,7 +17,7 @@ axiosRetry(axios, {
 
 export const apiClient = applyCaseMiddleware(
   axios.create({
-    baseURL: import.meta.env.VITE_BACKEND_URL,
+    baseURL: API_BASE_URL,
     headers: {
       'Content-Type': 'application/json'
     },
