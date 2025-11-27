@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Willkommen beim Mobilitätscheck für Magistratsvorlagen von pimoo</title>
+</head>
+<body>
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <p>Hallo {{ vorname }} {{ nachname }},</p>
+
+        <p>Vielen Dank, dass du dich bei unserem Service registriert hast! Hier sind die Details deines Profils:</p>
+        <ul>
+            <li><strong>Vorname:</strong> {{ vorname }}</li>
+            <li><strong>Nachname:</strong> {{ nachname }}</li>
+            <li><strong>Gemeinde:</strong> {{ gemeinde }}</li>
+            <li><strong>Benutzerrolle:</strong> {{ rolle }}</li>
+        </ul>
+
+        <p>Wir freuen uns, dass Sie sich für den Mobilitätscheck für Magistratsvorlagen angemeldet haben!</p>
+
+        <p>Viele Grüße,<br>
+        Ihr pimoo-Forschungsteam</p>
+    </div>
+</body>
+</html>
