@@ -1,0 +1,53 @@
+{
+  "name": "frontend",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "format": "prettier --write src/"
+  },
+  "dependencies": {
+    "@primeuix/themes": "^1.0.0",
+    "@vee-validate/yup": "^4.15.0",
+    "@vueuse/core": "^10.11.1",
+    "@vueuse/integrations": "^11.1.0",
+    "axios-case-converter": "^1.1.1",
+    "axios-retry": "^4.5.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "lucide-vue-next": "^0.447.0",
+    "pinia": "^2.1.7",
+    "primeicons": "^7.0.0",
+    "primevue": "^4.3.2",
+    "radix-vue": "^1.9.6",
+    "sass": "^1.77.8",
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss-animate": "^1.0.7",
+    "tailwindcss-primeui": "^0.3.4",
+    "universal-cookie": "^7.2.1",
+    "vee-validate": "^4.13.2",
+    "vite-svg-loader": "^5.1.0",
+    "vue": "^3.4.29",
+    "vue-router": "^4.3.3",
+    "vuedraggable": "^4.1.0",
+    "yup": "^1.4.0",
+    "yup-password": "^0.4.0"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-patch": "^1.8.0",
+    "@types/node": "^22.7.4",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "@vue/eslint-config-prettier": "^9.0.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.23.0",
+    "postcss": "^8.4.39",
+    "prettier": "^3.2.5",
+    "tailwindcss": "^3.4.13",
+    "vite": "^6.2.0"
+  }
+}
