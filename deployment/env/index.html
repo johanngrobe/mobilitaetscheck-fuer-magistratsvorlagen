@@ -1,0 +1,707 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://mobilitaetcheck-fuer-magistratsvorlagen.gituhub.com/deployment/env/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Übersicht der Umgebungsvariablen - Mobilitätscheck für Magistratsvorlagen Dokumentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ubersicht-der-umgebungsvariablen" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Mobilitätscheck für Magistratsvorlagen Dokumentation" class="md-header__button md-logo" aria-label="Mobilitätscheck für Magistratsvorlagen Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Mobilitätscheck für Magistratsvorlagen Dokumentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Übersicht der Umgebungsvariablen
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Mobilitätscheck für Magistratsvorlagen Dokumentation" class="md-nav__button md-logo" aria-label="Mobilitätscheck für Magistratsvorlagen Dokumentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Mobilitätscheck für Magistratsvorlagen Dokumentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Einführung
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Einführung
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../einfuehrung/verwaltung/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Verwaltung
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../einfuehrung/politik/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Politik
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../einfuehrung/buerger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bürger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deployment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker Compose
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bare-metal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bare Metal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#allgemeine-einstellungen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌐 Allgemeine Einstellungen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datenbank-einstellungen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗄️ Datenbank-Einstellungen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentifizierung-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔐 Authentifizierung &amp; Tokens
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#e-mail-einstellungen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✉️ E-Mail Einstellungen
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ubersicht-der-umgebungsvariablen">Übersicht der Umgebungsvariablen</h1>
+<p>Diese Seite beschreibt alle verfügbaren Umgebungsvariablen, die für den Betrieb der Anwendung erforderlich sind.<br />
+Sie können in einer <code>.env</code> Datei oder über das Deployment-System gesetzt werden.</p>
+<hr />
+<h2 id="allgemeine-einstellungen">🌐 Allgemeine Einstellungen</h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Beschreibung</th>
+<th>Standard/Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DOMAIN</code></td>
+<td>Domain, unter der das Backend erreichbar ist</td>
+<td><code>"localhost"</code></td>
+</tr>
+<tr>
+<td><code>FRONTEND_HOST</code></td>
+<td>URL des Frontends (für CORS, Redirects etc.)</td>
+<td><code>"http://localhost:5173"</code></td>
+</tr>
+<tr>
+<td><code>ENVIRONMENT</code></td>
+<td>Betriebsmodus (<code>development</code>, <code>production</code>, …)</td>
+<td><code>"production"</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="datenbank-einstellungen">🗄️ Datenbank-Einstellungen</h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Beschreibung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POSTGRES_SERVER</code></td>
+<td>Hostname oder IP des PostgreSQL-Servers</td>
+<td><code>"localhost"</code></td>
+</tr>
+<tr>
+<td><code>POSTGRES_PORT</code></td>
+<td>Port des PostgreSQL-Servers</td>
+<td><code>5432</code></td>
+</tr>
+<tr>
+<td><code>POSTGRES_DB</code></td>
+<td>Name der Datenbank</td>
+<td><code>"mobilitaetscheckdb"</code></td>
+</tr>
+<tr>
+<td><code>POSTGRES_USER</code></td>
+<td>Datenbank-Benutzername</td>
+<td><code>"mobilitaetscheck"</code></td>
+</tr>
+<tr>
+<td><code>POSTGRES_PASSWORD</code></td>
+<td>Passwort des DB-Benutzers</td>
+<td><code>"DB_PASSWORD"</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="authentifizierung-tokens">🔐 Authentifizierung &amp; Tokens</h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Beschreibung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>JWT_SECRET_KEY</code></td>
+<td>Secret zum Signieren von JWTs</td>
+<td><code>"JWT_SECRET"</code></td>
+</tr>
+<tr>
+<td><code>RESET_PASSWORD_TOKEN_SECRET</code></td>
+<td>Secret für Passwort-Reset-Token</td>
+<td><code>"RESET_SECRET"</code></td>
+</tr>
+<tr>
+<td><code>VERIFICATION_TOKEN_SECRET</code></td>
+<td>Secret für Verifizierungs-Token</td>
+<td><code>"VERIFY_SECRET"</code></td>
+</tr>
+<tr>
+<td><code>JWT_LIFETIME_SECONDS</code></td>
+<td>Gültigkeitsdauer der JWTs in Sekunden</td>
+<td><code>43200</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="e-mail-einstellungen">✉️ E-Mail Einstellungen</h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Beschreibung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MAIL_USERNAME</code></td>
+<td>SMTP Benutzername</td>
+<td><code>username</code></td>
+</tr>
+<tr>
+<td><code>MAIL_PASSWORD</code></td>
+<td>SMTP Passwort</td>
+<td><code>password</code></td>
+</tr>
+<tr>
+<td><code>MAIL_FROM</code></td>
+<td>Absenderadresse</td>
+<td><code>"mail@example.com"</code></td>
+</tr>
+<tr>
+<td><code>MAIL_FROM_NAME</code></td>
+<td>Name des Absenders</td>
+<td><code>"Mobilitaetscheck für Magistratsvorlagen"</code></td>
+</tr>
+<tr>
+<td><code>MAIL_PORT</code></td>
+<td>SMTP Port</td>
+<td><code>587</code></td>
+</tr>
+<tr>
+<td><code>MAIL_SERVER</code></td>
+<td>SMTP Host</td>
+<td><code>"mail.example.com"</code></td>
+</tr>
+<tr>
+<td><code>MAIL_STARTTLS</code></td>
+<td>STARTTLS aktivieren (<code>True/False</code>)</td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td><code>MAIL_SSL_TLS</code></td>
+<td>SSL/TLS verwenden (<code>True/False</code>)</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>USE_CREDENTIALS</code></td>
+<td>SMTP-Anmeldung aktivieren (<code>True/False</code>)</td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td><code>VALIDATE_CERTS</code></td>
+<td>SSL-Zertifikate validieren (<code>True/False</code>)</td>
+<td><code>True</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
