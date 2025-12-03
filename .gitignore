@@ -2,6 +2,7 @@
 docker-compose.yml
 .vscode/
 .env
+/site
 
 # Python
 backend/__pycache__/

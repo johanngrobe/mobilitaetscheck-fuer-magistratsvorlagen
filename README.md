@@ -9,7 +9,7 @@
 
 ## Inhaltsverzeichnis
 
-- [Dokumentation](https://mobilitaetscheck-docs.github.com)
+- [Dokumentation](https://johanngrobe.github.io/mobilitaetscheck-fuer-magistratsvorlagen/deployment/bare-metal/)
 - [Was ist der Mobilitätscheck für Magistratsvorlagen?](#was-ist-der-mobilitätscheck-für-magistratsvorlagen)
 - [Förderung](#förderung)
 - [License](#lizenz)

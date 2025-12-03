@@ -1,4 +1,14 @@
 site_name: Mobilitätscheck für Magistratsvorlagen Dokumentation
-site_url: https://mobilitaetcheck-docs.gituhub.com
+site_url: https://mobilitaetcheck-fuer-magistratsvorlagen.gituhub.com
 theme:
   name: material
+nav:
+  - Einführung:
+      - Verwaltung: einfuehrung/verwaltung.md
+      - Politik: einfuehrung/politik.md
+      - Bürger: einfuehrung/buerger.md
+  - Deployment:
+      - Docker Compose: deployment/docker.md
+      - Bare Metal: deployment/bare-metal.md
+plugins:
+  - include-markdown
