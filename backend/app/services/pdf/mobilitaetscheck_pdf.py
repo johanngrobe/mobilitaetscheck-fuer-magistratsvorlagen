@@ -90,6 +90,21 @@ class MobilitaetscheckPDF(BasePDF):
             self.cell(0, 4, text.upper(), new_x="LMARGIN", new_y="NEXT")
         self.set_text_color(*GRAY_900)
 
+    def _force_stroke_state(self, color: tuple, lw: float):
+        """Write draw color and line width directly to the current page stream.
+
+        set_draw_color / set_line_width both deduplicate against global state, so
+        they silently skip emission when self.page is switched directly (not via
+        add_page).  This method bypasses that by calling _out unconditionally.
+        """
+        r, g, b = color
+        self._out(f"{r / 255:.4f} {g / 255:.4f} {b / 255:.4f} RG")
+        self._out(f"{lw * self.k:.2f} w")
+        # Invalidate cached state so the next normal set_draw_color / set_line_width
+        # call will also emit (prevents deduplication on the restored page).
+        self.draw_color = None
+        self.line_width = -1.0
+
     def _h_divider(self, x: float, w: float):
         self.set_draw_color(*GRAY_200)
         self.set_line_width(0.2)
@@ -383,9 +398,11 @@ class MobilitaetscheckPDF(BasePDF):
             card_top = self.get_y()
 
             # ── header bar ──────────────────────────────────────────
+            # Rounded top corners only: draw full rounded rect then square off the bottom
             self.set_fill_color(*hdr_bg)
             self.set_draw_color(*hdr_bg)
-            self.rect(cx, card_top, cw, header_h, style="F")
+            self.rect(cx, card_top, cw, header_h, style="F", corner_radius=3)
+            self.rect(cx, card_top + 3, cw, header_h - 3, style="F")
 
             # circle number badge
             bx = cx + 3
@@ -543,8 +560,7 @@ class MobilitaetscheckPDF(BasePDF):
 
                 # Start page: top + left + right down to page bottom (open bottom)
                 self.page = card_start_page
-                self.set_draw_color(*GRAY_200)
-                self.set_line_width(0.3)
+                self._force_stroke_state(GRAY_200, 0.3)
                 page_bot = self.h - self.b_margin
                 self.line(cx, card_top, cx + cw, card_top)
                 self.line(cx, card_top, cx, page_bot)
@@ -553,15 +569,13 @@ class MobilitaetscheckPDF(BasePDF):
                 # Intermediate pages: left + right full content height
                 for _p in range(card_start_page + 1, end_page):
                     self.page = _p
-                    self.set_draw_color(*GRAY_200)
-                    self.set_line_width(0.3)
+                    self._force_stroke_state(GRAY_200, 0.3)
                     self.line(cx, content_top, cx, self.h - self.b_margin)
                     self.line(cx + cw, content_top, cx + cw, self.h - self.b_margin)
 
                 # End page: left + right + bottom (open top)
                 self.page = saved_page
-                self.set_draw_color(*GRAY_200)
-                self.set_line_width(0.3)
+                self._force_stroke_state(GRAY_200, 0.3)
                 self.line(cx, content_top, cx, end_y)
                 self.line(cx + cw, content_top, cx + cw, end_y)
                 self.line(cx, end_y, cx + cw, end_y)
