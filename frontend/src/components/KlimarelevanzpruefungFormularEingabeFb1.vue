@@ -3,7 +3,9 @@
     <form @submit.prevent="onSubmit" class="mt-4">
       <Message v-if="hasErrors" severity="error" class="mb-4">
         <ul class="list-disc list-inside">
-          <li v-for="(error, field) in errors" :key="field">{{ dynamicErrorLabels[field] ?? error }}</li>
+          <li v-for="(error, field) in errors" :key="field">
+            {{ dynamicErrorLabels[field] ?? error }}
+          </li>
         </ul>
       </Message>
       <Stepper value="1">
@@ -544,15 +546,16 @@
                 <li>
                   <span>In welchem Umfang werden die Grünflächen aufgewertet? (Angabe in m²)</span>
                   <FloatLabel variant="on" class="mt-2 w-full">
-                    <InputText
+                    <InputNumber
                       id="a5q2"
                       v-model="a5q2"
                       aria-describedby="a5q2-help"
+                      suffix=" m²"
                       :invalid="!!errors.a5q2"
                       class="w-full"
                       inputClass="w-full"
                     />
-                    <label for="a5q2">Umfang</label>
+                    <label for="a5q2">Angabe in m²</label>
                   </FloatLabel>
                 </li>
                 <li>

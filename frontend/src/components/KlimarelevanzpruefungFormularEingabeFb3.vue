@@ -2,7 +2,7 @@
   <div>
     <Message v-if="hasErrors" severity="error" class="mb-4">
       <ul class="list-disc list-inside">
-        <li v-for="(error, field) in errors" :key="field">{{ error }}</li>
+        <li v-for="(error, field) in errors" :key="field">{{ dynamicErrorLabels[field] ?? error }}</li>
       </ul>
     </Message>
     <form @submit.prevent="onSubmit" class="mt-4">
@@ -355,6 +355,51 @@ const { defineField, handleSubmit, errors, setValues, values } = useForm({
 })
 
 const hasErrors = computed(() => Object.keys(errors.value).length > 0)
+
+const s1Counter = computed(() => {
+  const pos = {}
+  let n = 1
+  pos.c1q1 = n++
+  if (c1q1.value === 1) {
+    pos.c1q2 = n++
+    if (c1q2.value === 1) pos.c1q3 = n++
+    pos.c1q4 = n++
+    if (c1q4.value === 1) pos.c1q5 = n++
+    pos.c1q6 = n++
+    if (c1q6.value === 1) pos.c1q7 = n++
+    pos.c1q8 = n++
+    if (c1q8.value === 1) pos.c1q9 = n++
+  }
+  return pos
+})
+
+const s2Counter = computed(() => {
+  const pos = {}
+  let n = 1
+  pos.c2q1 = n++
+  if (c2q1.value === 1) {
+    pos.c2q2 = n++
+    if (c2q2.value === 1) pos.c2q3 = n++
+    pos.c2q4 = n++
+    if (c2q4.value === 1) pos.c2q5 = n++
+    pos.c2q6 = n++
+    if (c2q6.value === 1) pos.c2q7 = n++
+    pos.c2q8 = n++
+    if (c2q8.value === 1) pos.c2q9 = n++
+  }
+  return pos
+})
+
+const dynamicErrorLabels = computed(() => {
+  const labels = {}
+  for (const [field, n] of Object.entries(s1Counter.value)) {
+    labels[field] = `Seite 1, Frage ${n}`
+  }
+  for (const [field, n] of Object.entries(s2Counter.value)) {
+    labels[field] = `Seite 2, Frage ${n}`
+  }
+  return labels
+})
 
 const [c1q1] = defineField('c1q1')
 const [c1q2] = defineField('c1q2')
