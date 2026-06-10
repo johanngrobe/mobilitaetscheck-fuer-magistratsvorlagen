@@ -138,7 +138,9 @@ class KlimarelevanzpruefungEingabeFb1(Base):
         nullable=True,
         comment="Teil 5 Frage 1",
     )
-    a5q2: Mapped[Optional[str]] = mapped_column(nullable=True, comment="Teil 5 Frage 2")
+    a5q2: Mapped[Optional[float]] = mapped_column(
+        nullable=True, comment="Teil 5 Frage 2"
+    )
     a5q3: Mapped[Optional[str]] = mapped_column(nullable=True, comment="Teil 5 Frage 3")
     a5q5: Mapped[Optional[str]] = mapped_column(nullable=True, comment="Teil 5 Frage 5")
     a5q4: Mapped[Optional[int]] = mapped_column(

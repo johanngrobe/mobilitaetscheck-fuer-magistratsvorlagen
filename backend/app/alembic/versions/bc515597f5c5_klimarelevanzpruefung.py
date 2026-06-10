@@ -125,7 +125,7 @@ def upgrade() -> None:
             """
         INSERT INTO klimarelevanzpruefung_energiestandard (id, name) VALUES
             (1, 'kein Standard'),
-            (2, 'KfW-Effizienzhaus 155'),
+            (2, 'KfW-Effizienzhaus 115'),
             (3, 'KfW-Effizienzhaus 100'),
             (4, 'KfW-Effizienzhaus 85'),
             (5, 'KfW-Effizienzhaus 70'),

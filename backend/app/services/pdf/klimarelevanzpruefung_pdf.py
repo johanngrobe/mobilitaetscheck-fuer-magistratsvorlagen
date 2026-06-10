@@ -127,10 +127,10 @@ class KlimarelevanzpruefungPDF(BasePDF):
         g = self.RULE_INSET
         self.set_line_width(line_width)
         self.set_draw_color(0, 0, 0)
-        self.line(x0,     y, x1 - g, y)
+        self.line(x0, y, x1 - g, y)
         self.line(x1 + g, y, x2 - g, y)
         self.line(x2 + g, y, x3 - g, y)
-        self.line(x3 + g, y, x4,     y)
+        self.line(x3 + g, y, x4, y)
 
     def _add_table_header(self):
         """Booktabs-style header: thick toprule, text, partial midrule, Pos./Neg., midrule."""
@@ -190,8 +190,7 @@ class KlimarelevanzpruefungPDF(BasePDF):
         text_col_width = self._get_text_col_width()
         row_text = positive_text if positive_text else negative_text
         row_text = (
-            row_text
-            .replace(" Begründung: ", "\nBegründung:\x00")
+            row_text.replace(" Begründung: ", "\nBegründung:\x00")
             .replace(" Erläuterung: ", "\nErläuterung:\x00")
             .replace(": ", ":\n")
             .replace(":\x00", ": ")
@@ -339,7 +338,7 @@ class KlimarelevanzpruefungPDF(BasePDF):
                     (
                         "a1",
                         "",
-                        f"Im Rahmen des Vorhabens werde(n) {fb1.a1q2} angeschafft.³",
+                        f"Im Rahmen des Vorhabens wird/werden {fb1.a1q2} angeschafft.³",
                     )
                 )
 
@@ -374,7 +373,7 @@ class KlimarelevanzpruefungPDF(BasePDF):
                         rows.append(
                             (
                                 "a2",
-                                f"Dabei wird der Energiestandard {fb1.a2q4_item.name} erreicht. Es wurde sich für den genannten Standard entschieden, da {fb1.a2q5 or ''}",
+                                f"Dabei wird der Energiestandard {fb1.a2q4_item.name} erreicht. Begründung für den genannten Standard {fb1.a2q5 or ''}",
                                 "",
                             )
                         )
@@ -384,7 +383,7 @@ class KlimarelevanzpruefungPDF(BasePDF):
                         (
                             "a2",
                             "",
-                            f"Es wird lediglich der Energiestandard {fb1.a2q6_item.name} erreicht und damit das gesetzliche Mindestmaß erfüllt. Es wurde sich für den genannten Standard entschieden, da {fb1.a2q7 or ''}²",
+                            f"Es wird lediglich der Energiestandard {fb1.a2q6_item.name} erreicht und damit das gesetzliche Mindestmaß erfüllt. Begründung für den genannten Standard: {fb1.a2q7 or ''}²",
                         )
                     )
                 elif fb1.a2q6:
@@ -468,7 +467,7 @@ class KlimarelevanzpruefungPDF(BasePDF):
             if fb1.a3q1 == 1:
                 neg_text = f"Bei dem Vorhaben werden Flächen im Umfang von {self._fmt_num(fb1.a3q2)} m² neu versiegelt.⁴"
                 if fb1.a3q3:
-                    neg_text += f" Bisher wurde die Fläche als {fb1.a3q3} genutzt."
+                    neg_text += f"Bisherige Nutzung der Fläche: {fb1.a3q3}"
                 rows.append(("a3", "", neg_text))
 
                 if fb1.a3q4 == 1:
@@ -484,7 +483,7 @@ class KlimarelevanzpruefungPDF(BasePDF):
                         (
                             "a3",
                             "",
-                            f"Für die Versiegelung sind keine Ausgleichsmaßnahmen vorgesehen. Erläuterung: {fb1.a3q6 or ''}",
+                            f"Für die Versiegelung sind keine Ausgleichsmaßnahmen vorgesehen. Begründung: {fb1.a3q6 or ''}",
                         )
                     )
 
@@ -492,7 +491,7 @@ class KlimarelevanzpruefungPDF(BasePDF):
             if fb1.a4q1 == 1:
                 pos_text = f"Bei dem Vorhaben werden Flächen im Umfang von {self._fmt_num(fb1.a4q2)} m² entsiegelt."
                 if fb1.a4q3:
-                    pos_text += f" Bisher wurde die Fläche als {fb1.a4q3} genutzt."
+                    pos_text += f"Bisherige Nutzung der Fläche: {fb1.a4q3}"
                 rows.append(("a4", pos_text, ""))
 
                 if fb1.a4q4 == 1:
@@ -508,7 +507,7 @@ class KlimarelevanzpruefungPDF(BasePDF):
             if fb1.a5q1 == 1:
                 pos_text = f"Bei dem Vorhaben werden Grünflächen im Umfang von {fb1.a5q2 or '?'} m² aufgewertet. Erläuterung: {fb1.a5q5 or ''}"
                 if fb1.a5q3:
-                    pos_text += f" Bisher wurde die Fläche als {fb1.a5q3} genutzt."
+                    pos_text += f"Bisherige Nutzung der Fläche: {fb1.a5q3}"
                 rows.append(("a5", pos_text, ""))
 
                 if fb1.a5q4 == 1:

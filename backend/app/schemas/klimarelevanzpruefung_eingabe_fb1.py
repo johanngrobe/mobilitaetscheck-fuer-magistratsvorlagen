@@ -57,7 +57,7 @@ class KlimarelevanzpruefungEingabeFb1Optional(BaseModel):
     a4q4: Optional[int] = None
 
     # Teil 5
-    a5q2: Optional[str] = None
+    a5q2: Optional[float] = None
     a5q3: Optional[str] = None
     a5q5: Optional[str] = None
     a5q4: Optional[int] = None

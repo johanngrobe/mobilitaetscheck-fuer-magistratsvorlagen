@@ -22,7 +22,7 @@ router = APIRouter()
 async def get_klimarelevanzpruefung_vorhaben(
     db: AsyncSession = Depends(get_async_session),
 ):
-    return await crud.get_all(db)
+    return await crud.get_all(db, sort_params=[("id", "asc")])
 
 
 @router.get(
