@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -44,6 +46,13 @@ app.add_exception_handler(DatabaseCommitError, database_commit_exception_handler
 app.add_exception_handler(NotFoundError, not_found_exception_handler)
 
 app.include_router(router, prefix=settings.API_V1_STR)
+
+Path(settings.BRANDING_UPLOAD_DIR).mkdir(parents=True, exist_ok=True)
+app.mount(
+    "/uploads/branding",
+    StaticFiles(directory=settings.BRANDING_UPLOAD_DIR),
+    name="branding-uploads",
+)
 
 app.mount(
     "/",

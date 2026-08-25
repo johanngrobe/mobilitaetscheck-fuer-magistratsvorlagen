@@ -134,6 +134,8 @@
       }}</small>
     </div>
 
+    <DatenschutzZustimmung v-model="datenschutzAkzeptiert" :error-message="errors.datenschutzAkzeptiert" />
+
     <Button label="Registrieren" type="submit" class="w-full" />
   </form>
 </template>
@@ -150,6 +152,7 @@ import FloatLabel from 'primevue/floatlabel'
 import Password from 'primevue/password'
 import Divider from 'primevue/divider'
 import Select from 'primevue/select'
+import DatenschutzZustimmung from '@/components/DatenschutzZustimmung.vue'
 import { apiClient } from '@/services/axios'
 import { useToast } from 'primevue/usetoast'
 
@@ -171,6 +174,7 @@ const [gemeindeId] = defineField('gemeindeId')
 const [email] = defineField('email')
 const [password] = defineField('password')
 const [confirmPassword] = defineField('confirmPassword')
+const [datenschutzAkzeptiert] = defineField('datenschutzAkzeptiert')
 
 onMounted(async () => {
   try {
@@ -202,7 +206,9 @@ watch(gemeindeId, async (newId) => {
 const onSubmit = handleSubmit(async (values) => {
   try {
     isLoading.value = true
-    await register({ ...values, rolle_id: 2, gruppeId: gruppeId.value ?? undefined })
+    // eslint-disable-next-line no-unused-vars
+    const { datenschutzAkzeptiert, ...registerValues } = values
+    await register({ ...registerValues, rolle_id: 2, gruppeId: gruppeId.value ?? undefined })
     router.replace({
       name: 'account-bestaetigen',
       query: { verify: 'check-mail', email: values.email }

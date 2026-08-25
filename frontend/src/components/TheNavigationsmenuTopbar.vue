@@ -6,7 +6,11 @@
           :to="{ name: 'startseite' }"
           class="grid grid-cols-1 items-center justify-center justify-items-center menuItem-active-link"
         >
-          <img width="120px" src="../assets/logos/pimoo-logo-invertiert.png" />
+          <img
+            width="120px"
+            :src="brandingStore.url('menue-logo') || defaultLogo"
+            alt="Logo"
+          />
           <!-- <div class="font-bold text-lg flex items-center">Mobilitätscheck</div>
           <div class="font-bold text-xs">für Magistratsvorlagen</div> -->
         </router-link>
@@ -73,12 +77,15 @@
 <script setup>
 import { ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
+import { useBrandingStore } from '@/stores/branding'
 import Avatar from 'primevue/avatar'
 import Button from 'primevue/button'
 import Toolbar from 'primevue/toolbar'
 import Popover from 'primevue/popover'
+import defaultLogo from '../assets/logos/pimoo-logo-invertiert.png'
 
 const authStore = useAuthStore()
+const brandingStore = useBrandingStore()
 
 const op = ref()
 

@@ -9,6 +9,7 @@ from app.core.config import settings
 from app.core.deps import get_async_session, get_user_manager
 from app.crud.exceptions import NotFoundError
 from app.crud.mobilitaetscheck_eingabe import crud_mobility_submission
+from app.crud.plattform_einstellung import crud_plattform_einstellung
 from app.crud.user import crud_user as crud
 from app.models.gemeinde import Gemeinde
 from app.models.magistratsvorlage import Magistratsvorlage
@@ -18,6 +19,7 @@ from app.models.user_rolle import UserRolle
 from app.schemas.gemeinde import GemeindeRead
 from app.schemas.magistratsvorlage import MagistratsvorlageRead
 from app.schemas.mobilitaetscheck_eingabe import MobilitaetscheckEingabeRead
+from app.schemas.plattform_einstellung import PlattformEinstellungRead
 from app.schemas.user import UserCreate
 from app.services.user.user_manager import UserManager
 from app.utils.invite_token import decode_invite_token
@@ -170,6 +172,12 @@ async def get_einladung_info(
 # ---------------------------------------------------------------------------
 # Public read-only access (no authentication required)
 # ---------------------------------------------------------------------------
+
+@router.get("/plattform-einstellung", response_model=PlattformEinstellungRead)
+async def get_public_plattform_einstellung(db: AsyncSession = Depends(get_async_session)):
+    """Return the Datenschutzerklärung and other public platform settings."""
+    return await crud_plattform_einstellung.get(db)
+
 
 @router.get("/gemeinden", response_model=list[GemeindeRead])
 async def get_public_gemeinden(db: AsyncSession = Depends(get_async_session)):

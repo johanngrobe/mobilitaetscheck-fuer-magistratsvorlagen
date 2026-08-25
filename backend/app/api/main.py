@@ -4,6 +4,7 @@ from app.core.deps import auth_backend, fastapi_users
 from app.core.config import settings
 from app.api.routers import (
     bool_erweitert,
+    branding,
     gemeinde_gebiet,
     indikator,
     # klimacheck,
@@ -62,6 +63,7 @@ router.include_router(
     tags=["Users"],
 )
 router.include_router(public.router, prefix="/public", tags=["Public"])
+router.include_router(branding.router, prefix="/branding", tags=["Branding"])
 router.include_router(
     magistratsvorlage.router,
     prefix="/magistratsvorlage",

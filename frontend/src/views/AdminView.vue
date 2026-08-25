@@ -27,12 +27,26 @@ import Menu from 'primevue/menu'
 
 const items = ref([
   {
-    label: 'Systemadministration',
+    label: 'Benutzerverwaltung',
     items: [
-      { label: 'Kommunen', route: '/admin/kommunen' },
-      { label: 'Benutzer', route: '/admin/benutzer' },
-      { label: 'Einladungen', route: '/admin/einladungen' }
+      { label: 'Kommunen', icon: 'pi pi-building', route: '/admin/kommunen' },
+      { label: 'Benutzer', icon: 'pi pi-users', route: '/admin/benutzer' },
+      { label: 'Einladungen', icon: 'pi pi-user-plus', route: '/admin/einladungen' }
     ]
+  },
+  {
+    label: 'Inhalte',
+    items: [
+      { label: 'Startseite', icon: 'pi pi-home', route: '/admin/startseite' },
+      { label: 'Über das Tool', icon: 'pi pi-info-circle', route: '/admin/ueber-das-tool' },
+      { label: 'Impressum', icon: 'pi pi-file', route: '/admin/impressum' },
+      { label: 'Datenschutz', icon: 'pi pi-shield', route: '/admin/datenschutz' },
+      { label: 'E-Mail-Vorlagen', icon: 'pi pi-envelope', route: '/admin/email-vorlagen' }
+    ]
+  },
+  {
+    label: 'Design',
+    items: [{ label: 'Branding', icon: 'pi pi-palette', route: '/admin/branding' }]
   }
 ])
 </script>

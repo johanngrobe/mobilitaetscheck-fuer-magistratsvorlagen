@@ -50,6 +50,11 @@ Erstelle eine `.env` Datei:
 cp env.example .env
 ```
 
+Über `BRANDING_UPLOAD_DIR` lässt sich der Speicherort für hochgeladene Branding-Bilder (Logos,
+Favicon) konfigurieren. Standardmäßig liegt er innerhalb des Backend-Verzeichnisses; bei Bedarf
+kann ein anderer (auch absoluter) Pfad gesetzt werden. Das Verzeichnis wird beim Start automatisch
+angelegt, muss aber für den Benutzer beschreibbar sein, unter dem der Backend-Dienst läuft.
+
 ---
 
 ## 4. Frontend installieren und builden

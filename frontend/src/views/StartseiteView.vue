@@ -2,11 +2,14 @@
   <div>
     <!-- Hero -->
     <div class="text-center py-10 px-4">
-      <h1 class="text-3xl font-bold mb-3">Mobilitätscheck für Magistratsvorlagen</h1>
-      <p class="text-gray-600 max-w-xl mx-auto mb-8">
-        Veröffentlichte Mobilitätschecks von Verwaltung und Kommunalpolitik einsehen – ohne
-        Anmeldung.
-      </p>
+      <div v-if="startseiteInhalt" class="max-w-2xl mx-auto mb-8" v-html="startseiteInhalt" />
+      <template v-else>
+        <h1 class="text-3xl font-bold mb-3">Mobilitätscheck für Magistratsvorlagen</h1>
+        <p class="text-gray-600 max-w-xl mx-auto mb-8">
+          Veröffentlichte Mobilitätschecks von Verwaltung und Kommunalpolitik einsehen – ohne
+          Anmeldung.
+        </p>
+      </template>
 
       <div class="flex flex-col items-center gap-2">
         <label class="font-semibold text-lg">Kommune auswählen</label>
@@ -142,6 +145,7 @@ const selectedGemeindeId = ref(null)
 const magistratsvorlagen = ref([])
 const searchQuery = ref('')
 const isLoadingGemeinden = ref(true)
+const startseiteInhalt = ref('')
 const isLoadingVorlagen = ref(false)
 
 const filteredVorlagen = computed(() => {
@@ -174,8 +178,17 @@ const onGemeindeChange = () => {
   router.replace({ query: { gemeinde: selectedGemeindeId.value } })
 }
 
+const fetchStartseiteInhalt = async () => {
+  try {
+    const res = await apiClient.get('/public/plattform-einstellung')
+    startseiteInhalt.value = res.data.startseiteInhalt || ''
+  } catch {
+    startseiteInhalt.value = ''
+  }
+}
+
 onMounted(async () => {
-  await fetchGemeinden()
+  await Promise.all([fetchGemeinden(), fetchStartseiteInhalt()])
   const fromQuery = route.query.gemeinde ? Number(route.query.gemeinde) : null
   if (fromQuery) {
     selectedGemeindeId.value = fromQuery

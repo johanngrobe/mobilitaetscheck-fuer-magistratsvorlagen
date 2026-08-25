@@ -16,6 +16,7 @@ backend/db_backups
 backend/db_backups/*.dump
 backend/.vscode/
 backend/.env.old
+backend/uploads/
 
 
 

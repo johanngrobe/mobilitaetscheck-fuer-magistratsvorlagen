@@ -29,6 +29,18 @@ const router = createRouter({
       component: StartseiteView
     },
     {
+      path: '/impressum',
+      name: 'impressum',
+      component: () => import('@/views/ImpressumView.vue'),
+      meta: { requiresAuth: false }
+    },
+    {
+      path: '/datenschutzerklaerung',
+      name: 'datenschutzerklaerung',
+      component: () => import('@/views/DatenschutzerklaerungView.vue'),
+      meta: { requiresAuth: false }
+    },
+    {
       path: '/ueber-das-tool',
       name: 'ueber-das-tool',
       // route level code-splitting
@@ -237,6 +249,36 @@ const router = createRouter({
           path: 'einladungen',
           name: 'admin-einladungen',
           component: () => import('@/views/AdminEinladungenView.vue')
+        },
+        {
+          path: 'datenschutz',
+          name: 'admin-datenschutz',
+          component: () => import('@/views/AdminDatenschutzView.vue')
+        },
+        {
+          path: 'email-vorlagen',
+          name: 'admin-email-vorlagen',
+          component: () => import('@/views/AdminEmailVorlagenView.vue')
+        },
+        {
+          path: 'branding',
+          name: 'admin-branding',
+          component: () => import('@/views/AdminBrandingView.vue')
+        },
+        {
+          path: 'ueber-das-tool',
+          name: 'admin-ueber-das-tool',
+          component: () => import('@/views/AdminUeberDasToolView.vue')
+        },
+        {
+          path: 'impressum',
+          name: 'admin-impressum',
+          component: () => import('@/views/AdminImpressumView.vue')
+        },
+        {
+          path: 'startseite',
+          name: 'admin-startseite',
+          component: () => import('@/views/AdminStartseiteView.vue')
         }
       ]
     },

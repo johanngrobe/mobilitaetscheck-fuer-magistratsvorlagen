@@ -11,19 +11,7 @@
 
       <BaseCard class="p-2">
         <div class="text-center mb-8">
-          <div class="flex items-center justify-center gap-x-6 h-10 mx-auto mb-4">
-            <img
-              src="../assets/logos/HSRM_Unterzeile_farbig_RGB.png"
-              alt="Logo Hochschule RheinMain"
-              class="h-10"
-            />
-            <img src="../assets/logos/Pimoo-Logo-Primaer.png" alt="Logo pimoo" class="h-10" />
-            <img
-              src="../assets/logos/oberursel-logo.webp"
-              alt="Logo Stadt Oberursel"
-              class="h-11"
-            />
-          </div>
+          <AuthLogoLeiste />
           <h1 class="text-xl font-bold text-gray-800">Mobilitätscheck</h1>
           <p class="text-sm text-gray-500">für Magistratsvorlagen</p>
         </div>
@@ -85,6 +73,7 @@ import InputText from 'primevue/inputtext'
 import FloatLabel from 'primevue/floatlabel'
 import Password from 'primevue/password'
 import Button from 'primevue/button'
+import AuthLogoLeiste from '@/components/AuthLogoLeiste.vue'
 
 const isLoading = ref(false)
 
