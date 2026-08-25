@@ -15,6 +15,14 @@ Sie können in einer `.env` Datei oder über das Deployment-System gesetzt werde
 
 ---
 
+## 🖼️ Branding & Uploads
+
+| Variable              | Beschreibung                                                                                   | Standard/Beispiel      |
+| ---------------------- | ----------------------------------------------------------------------------------------------- | ----------------------- |
+| `BRANDING_UPLOAD_DIR`  | Verzeichnis für hochgeladene Branding-Bilder (Logos, Favicon). Relativ zum Backend-Arbeitsverzeichnis oder absolut. Wird beim Start automatisch angelegt. | `"./uploads/branding"` |
+
+---
+
 ## 🗄️ Datenbank-Einstellungen
 
 | Variable            | Beschreibung                            | Beispiel               |
