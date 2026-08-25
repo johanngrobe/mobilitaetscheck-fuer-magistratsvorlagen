@@ -47,7 +47,7 @@ git clone https://github.com/ritmo-hsrm/mobilitaetscheck-fuer-magistratsvorlagen
 Erstelle eine `.env` Datei:
 
 ```bash
-cp example.env .env
+cp env.example .env
 ```
 
 ---
