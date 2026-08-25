@@ -11,19 +11,14 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
 import { useTitle } from '@vueuse/core'
 import ConfirmDialog from 'primevue/confirmdialog'
 import Toast from 'primevue/toast'
 import TheNavigationsmenuTopbar from './components/TheNavigationsmenuTopbar.vue'
 import TheFooter from './components/TheFooter.vue'
-import { useBrandingStore } from '@/stores/branding'
 
 useTitle('pimoo Mobilitätscheck')
-
-const brandingStore = useBrandingStore()
-onMounted(() => brandingStore.fetchBranding())
 </script>
 
 <style>

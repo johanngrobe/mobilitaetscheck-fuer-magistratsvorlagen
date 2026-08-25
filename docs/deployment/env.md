@@ -11,6 +11,7 @@ Sie können in einer `.env` Datei oder über das Deployment-System gesetzt werde
 | --------------- | ---------------------------------------------- | ------------------------- |
 | `DOMAIN`        | Domain, unter der das Backend erreichbar ist   | `"localhost"`             |
 | `FRONTEND_HOST` | URL des Frontends (für CORS, Redirects etc.)   | `"http://localhost:5173"` |
+| `HOST_URL`      | Öffentlich erreichbare URL des Backends (ohne abschließenden Slash). Wird für Links in E-Mails sowie für URLs hochgeladener Branding-Bilder verwendet – in Produktion **unbedingt** auf die tatsächliche Domain setzen. | `"http://localhost:8000"` |
 | `ENVIRONMENT`   | Betriebsmodus (`development`, `production`, …) | `"production"`            |
 
 ---

@@ -19,6 +19,8 @@ import ToastService from 'primevue/toastservice'
 import { setupToast } from '@/services/toast'
 import ConfirmationService from 'primevue/confirmationservice'
 import Tooltip from 'primevue/tooltip'
+import { useBrandingStore } from '@/stores/branding'
+import { useEinstellungStore } from '@/stores/einstellung'
 
 const MyPreset = definePreset(Aura, {
   semantic: {
@@ -94,4 +96,8 @@ app.use(PrimeVue, {
   locale: localeDe
 })
 
-app.mount('#app')
+const brandingStore = useBrandingStore()
+const einstellungStore = useEinstellungStore()
+Promise.all([brandingStore.fetchBranding(), einstellungStore.fetchEinstellung()]).finally(() =>
+  app.mount('#app')
+)
