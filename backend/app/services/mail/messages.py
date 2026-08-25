@@ -1,10 +1,19 @@
+from jinja2 import Template
 from fastapi_mail import MessageSchema, MessageType
 
 from app.core.config import settings
+from app.core.db import async_session_maker
+from app.crud.email_vorlage import crud_email_vorlage
 from app.models.user import User
 from app.services.mail.config_mail import Mail
 from app.utils.url_util import add_query_params
 
+
+async def _render_vorlage(key: str, context: dict) -> tuple[str, str]:
+    """Resolve the admin-editable (or default) subject/body for a template key and render placeholders."""
+    async with async_session_maker() as db:
+        betreff, inhalt = await crud_email_vorlage.get_resolved(db, key)
+    return Template(betreff).render(**context), Template(inhalt).render(**context)
 
 
 async def send_verification(user: User, token: str):
@@ -12,7 +21,7 @@ async def send_verification(user: User, token: str):
         f"{settings.HOST_URL}/auth/account-bestaetigen", {"token": token}
     )
 
-    user_dict = {
+    context = {
         "vorname": user.vorname,
         "nachname": user.nachname,
         "rolle": user.rolle.name,
@@ -20,15 +29,15 @@ async def send_verification(user: User, token: str):
         "url": url,
     }
 
-    message = MessageSchema(
-        subject="Willkommen – bitte bestätigen Sie Ihren Account",
-        recipients=[user.email],
-        template_body=user_dict,
-        subtype=MessageType.html,
-    )
-
     try:
-        await Mail.send_message(message, template_name="account-bestaetigen.html")
+        subject, body = await _render_vorlage("account-bestaetigen", context)
+        message = MessageSchema(
+            subject=subject,
+            recipients=[user.email],
+            body=body,
+            subtype=MessageType.html,
+        )
+        await Mail.send_message(message)
     except Exception as e:
         print(f"Error sending verification email: {e}")
 
@@ -51,23 +60,24 @@ async def send_einladung(
         f"{settings.HOST_URL}/auth/registrieren/einladung", {"token": token}
     )
 
-    invite_dict = {
+    context = {
         "rolle": rolle_name,
         "gemeinde": gemeinde_name,
         "url": url,
         "gueltigkeitsdauer": _format_gueltigkeitsdauer(valid_hours),
     }
 
-    message = MessageSchema(
-        subject="Einladung zur Registrierung beim Mobilitätscheck für Magistratsvorlagen",
-        recipients=[email],
-        template_body=invite_dict,
-        subtype=MessageType.html,
-    )
     try:
-        await Mail.send_message(message, template_name="einladung.html")
-    except:
-        print("Error sending invite email")
+        subject, body = await _render_vorlage("einladung", context)
+        message = MessageSchema(
+            subject=subject,
+            recipients=[email],
+            body=body,
+            subtype=MessageType.html,
+        )
+        await Mail.send_message(message)
+    except Exception as e:
+        print(f"Error sending invite email: {e}")
 
 
 async def send_reset_password(user: User, token: str):
@@ -76,18 +86,21 @@ async def send_reset_password(user: User, token: str):
         f"{settings.HOST_URL}/auth/passwort-zuruecksetzen", {"token": token}
     )
 
-    user_dict = {
+    context = {
         "vorname": user.vorname,
         "nachname": user.nachname,
         "rolle": user.rolle.name,
         "url": url,
     }
 
-    message = MessageSchema(
-        subject="Passwort zurücksetzen",
-        recipients=[user.email],  # List of recipients
-        template_body=user_dict,
-        subtype=MessageType.html,
-    )
-
-    await Mail.send_message(message, template_name="passwort-zuruecksetzen.html")
+    try:
+        subject, body = await _render_vorlage("passwort-zuruecksetzen", context)
+        message = MessageSchema(
+            subject=subject,
+            recipients=[user.email],
+            body=body,
+            subtype=MessageType.html,
+        )
+        await Mail.send_message(message)
+    except Exception as e:
+        print(f"Error sending reset password email: {e}")

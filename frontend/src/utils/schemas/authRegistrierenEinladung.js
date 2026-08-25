@@ -19,4 +19,9 @@ export const schema = yup.object({
     .oneOf([yup.ref('password')], 'Passwörter müssen übereinstimmen')
     .required('Passwortwiederholung ist erforderlich')
     .label('Passwort wiederholen'),
+  datenschutzAkzeptiert: yup
+    .boolean()
+    .oneOf([true], 'Bitte stimmen Sie der Datenschutzerklärung zu.')
+    .required('Bitte stimmen Sie der Datenschutzerklärung zu.')
+    .label('Datenschutzerklärung')
 })

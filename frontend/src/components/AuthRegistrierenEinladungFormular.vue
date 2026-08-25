@@ -124,6 +124,8 @@
       }}</small>
     </div>
 
+    <DatenschutzZustimmung v-model="datenschutzAkzeptiert" :error-message="errors.datenschutzAkzeptiert" />
+
     <Button label="Registrieren" type="submit" class="w-full" :loading="isSubmitting" />
   </form>
 </template>
@@ -140,6 +142,7 @@ import FloatLabel from 'primevue/floatlabel'
 import Password from 'primevue/password'
 import Divider from 'primevue/divider'
 import Select from 'primevue/select'
+import DatenschutzZustimmung from '@/components/DatenschutzZustimmung.vue'
 import { apiClient } from '@/services/axios'
 import { useToast } from 'primevue/usetoast'
 
@@ -167,6 +170,7 @@ const [vorname] = defineField('vorname')
 const [nachname] = defineField('nachname')
 const [password] = defineField('password')
 const [confirmPassword] = defineField('confirmPassword')
+const [datenschutzAkzeptiert] = defineField('datenschutzAkzeptiert')
 
 onMounted(async () => {
   if (!token) {
