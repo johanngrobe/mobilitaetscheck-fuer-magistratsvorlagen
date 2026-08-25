@@ -4,9 +4,9 @@
       <div class="footer-content mt-4 max-w-screen-lg mx-auto">
         <div class="grid grid-cols-2 items-center justify-center gap-4">
           <div class="flex flex-wrap items-center justify-center gap-2">
-            <template v-if="footerLogos.length > 0">
+            <template v-if="brandingStore.footerLogos.length > 0">
               <div
-                v-for="logo in footerLogos"
+                v-for="logo in brandingStore.footerLogos"
                 :key="logo.id"
                 class="bg-white flex w-fit p-2 rounded justify-center items-center"
               >
@@ -54,9 +54,9 @@
             </div>
             <div class="mt-2">
               <a
-                v-if="einstellung.impressumModus === 'url' && einstellung.impressumUrl"
+                v-if="einstellungStore.einstellung.impressumModus === 'url' && einstellungStore.einstellung.impressumUrl"
                 class="hover:underline"
-                :href="einstellung.impressumUrl"
+                :href="einstellungStore.einstellung.impressumUrl"
                 target="_blank"
                 rel="noopener noreferrer"
                 >Impressum</a
@@ -67,9 +67,9 @@
             </div>
             <div class="mt-2">
               <a
-                v-if="einstellung.datenschutzModus === 'url' && einstellung.datenschutzUrl"
+                v-if="einstellungStore.einstellung.datenschutzModus === 'url' && einstellungStore.einstellung.datenschutzUrl"
                 class="hover:underline"
-                :href="einstellung.datenschutzUrl"
+                :href="einstellungStore.einstellung.datenschutzUrl"
                 target="_blank"
                 rel="noopener noreferrer"
                 >Datenschutzerklärung</a
@@ -88,30 +88,16 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { apiClient } from '@/services/axios'
+import { useBrandingStore } from '@/stores/branding'
+import { useEinstellungStore } from '@/stores/einstellung'
 import BrandingLogoLink from './BrandingLogoLink.vue'
 import defaultLogo1 from '../assets/logos/HSRM_Unterzeile_farbig_RGB.png'
 import defaultLogo2 from '../assets/logos/oberursel-logo.webp'
 import defaultLogo3 from '../assets/logos/BMFTR.jpg'
 import defaultLogo4 from '../assets/logos/FONA.jpg'
 
-const einstellung = ref({})
-const footerLogos = ref([])
-
-onMounted(async () => {
-  try {
-    const [einstellungRes, footerLogosRes] = await Promise.all([
-      apiClient.get('/public/plattform-einstellung'),
-      apiClient.get('/branding/logo-listen/footer')
-    ])
-    einstellung.value = einstellungRes.data
-    footerLogos.value = footerLogosRes.data
-  } catch {
-    einstellung.value = {}
-    footerLogos.value = []
-  }
-})
+const brandingStore = useBrandingStore()
+const einstellungStore = useEinstellungStore()
 </script>
 
 <style scoped>
