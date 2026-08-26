@@ -30,6 +30,7 @@ import RichContentEditor from './RichContentEditor.vue'
 import { apiClient } from '@/services/axios'
 import { useToast } from 'primevue/usetoast'
 import { useConfirm } from 'primevue/useconfirm'
+import { UEBER_DAS_TOOL_STANDARD_INHALT } from '@/utils/standardInhalte'
 
 const isLoading = ref(false)
 const isSaving = ref(false)
@@ -42,9 +43,9 @@ const fetchEinstellung = async () => {
   isLoading.value = true
   try {
     const res = await apiClient.get('/admin/einstellung')
-    inhalt.value = res.data.ueberDasToolInhalt || ''
+    inhalt.value = res.data.ueberDasToolInhalt || UEBER_DAS_TOOL_STANDARD_INHALT
   } catch {
-    inhalt.value = ''
+    inhalt.value = UEBER_DAS_TOOL_STANDARD_INHALT
   } finally {
     isLoading.value = false
   }

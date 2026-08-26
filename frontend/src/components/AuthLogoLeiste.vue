@@ -1,6 +1,6 @@
 <template>
-  <div v-if="logos.length > 0" class="flex items-center justify-center gap-x-6 h-10 mx-auto mb-4">
-    <img v-for="logo in logos" :key="logo.id" :src="logo.asset.url" alt="Logo" class="h-10" />
+  <div v-if="brandingStore.loginLogos.length > 0" class="flex items-center justify-center gap-x-6 h-10 mx-auto mb-4">
+    <img v-for="logo in brandingStore.loginLogos" :key="logo.id" :src="logo.asset.url" alt="Logo" class="h-10" />
   </div>
   <div v-else class="flex items-center justify-center gap-x-6 h-10 mx-auto mb-4">
     <img src="../assets/logos/HSRM_Unterzeile_farbig_RGB.png" alt="Logo" class="h-10" />
@@ -10,17 +10,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { apiClient } from '@/services/axios'
+import { useBrandingStore } from '@/stores/branding'
 
-const logos = ref([])
-
-onMounted(async () => {
-  try {
-    const res = await apiClient.get('/branding/logo-listen/login')
-    logos.value = res.data
-  } catch {
-    logos.value = []
-  }
-})
+const brandingStore = useBrandingStore()
 </script>

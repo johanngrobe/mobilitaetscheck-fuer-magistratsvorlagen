@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BaseHeading>Datenschutzerklärung</BaseHeading>
+    <BaseHeading>Nutzungsbedingungen</BaseHeading>
 
     <BaseSpinner v-if="isLoading" />
     <div v-else-if="modus === 'url' && url">
@@ -12,7 +12,7 @@
       </p>
     </div>
     <div v-else-if="inhalt" class="rich-content" v-html="inhalt" />
-    <p v-else class="text-gray-400">Keine Datenschutzerklärung hinterlegt.</p>
+    <p v-else class="text-gray-400">Keine Nutzungsbedingungen hinterlegt.</p>
   </div>
 </template>
 
@@ -29,9 +29,9 @@ onMounted(async () => {
   isLoading.value = true
   try {
     const res = await apiClient.get('/public/plattform-einstellung')
-    modus.value = res.data.datenschutzModus || 'inhalt'
-    inhalt.value = res.data.datenschutzerklaerung || ''
-    url.value = res.data.datenschutzUrl || ''
+    modus.value = res.data.nutzungsbedingungenModus || 'inhalt'
+    inhalt.value = res.data.nutzungsbedingungenInhalt || ''
+    url.value = res.data.nutzungsbedingungenUrl || ''
     if (modus.value === 'url' && url.value) {
       window.location.href = url.value
     }

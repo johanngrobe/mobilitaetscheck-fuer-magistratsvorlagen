@@ -4,15 +4,25 @@ import { apiClient } from '@/services/axios'
 
 export const useBrandingStore = defineStore('branding', () => {
   const slots = ref({})
+  const footerLogos = ref([])
+  const loginLogos = ref([])
   const isLoaded = ref(false)
 
   async function fetchBranding() {
     try {
-      const res = await apiClient.get('/branding')
-      slots.value = Object.fromEntries(res.data.map((s) => [s.slot, s]))
+      const [slotsRes, footerRes, loginRes] = await Promise.all([
+        apiClient.get('/branding'),
+        apiClient.get('/branding/logo-listen/footer'),
+        apiClient.get('/branding/logo-listen/login')
+      ])
+      slots.value = Object.fromEntries(slotsRes.data.map((s) => [s.slot, s]))
+      footerLogos.value = footerRes.data
+      loginLogos.value = loginRes.data
       applyFavicon()
     } catch {
       slots.value = {}
+      footerLogos.value = []
+      loginLogos.value = []
     } finally {
       isLoaded.value = true
     }
@@ -38,5 +48,5 @@ export const useBrandingStore = defineStore('branding', () => {
     linkEl.href = faviconUrl
   }
 
-  return { slots, isLoaded, fetchBranding, url, link }
+  return { slots, footerLogos, loginLogos, isLoaded, fetchBranding, url, link }
 })

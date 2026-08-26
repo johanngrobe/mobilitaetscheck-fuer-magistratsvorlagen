@@ -32,7 +32,7 @@
           :disabled="!gemeindeId"
           showClear
         />
-        <label for="gruppeId">Fraktion / Partei (optional)</label>
+        <label for="gruppeId">Gruppe (optional)</label>
       </FloatLabel>
     </div>
 
@@ -135,6 +135,14 @@
     </div>
 
     <DatenschutzZustimmung v-model="datenschutzAkzeptiert" :error-message="errors.datenschutzAkzeptiert" />
+    <NutzungsbedingungenZustimmung
+      v-model="nutzungsbedingungenAkzeptiert"
+      :error-message="errors.nutzungsbedingungenAkzeptiert"
+    />
+    <WeitereZustimmung
+      v-model="weitereZustimmungAkzeptiert"
+      :error-message="errors.weitereZustimmungAkzeptiert"
+    />
 
     <Button label="Registrieren" type="submit" class="w-full" />
   </form>
@@ -153,6 +161,8 @@ import Password from 'primevue/password'
 import Divider from 'primevue/divider'
 import Select from 'primevue/select'
 import DatenschutzZustimmung from '@/components/DatenschutzZustimmung.vue'
+import NutzungsbedingungenZustimmung from '@/components/NutzungsbedingungenZustimmung.vue'
+import WeitereZustimmung from '@/components/WeitereZustimmung.vue'
 import { apiClient } from '@/services/axios'
 import { useToast } from 'primevue/usetoast'
 
@@ -175,6 +185,8 @@ const [email] = defineField('email')
 const [password] = defineField('password')
 const [confirmPassword] = defineField('confirmPassword')
 const [datenschutzAkzeptiert] = defineField('datenschutzAkzeptiert')
+const [nutzungsbedingungenAkzeptiert] = defineField('nutzungsbedingungenAkzeptiert')
+const [weitereZustimmungAkzeptiert] = defineField('weitereZustimmungAkzeptiert')
 
 onMounted(async () => {
   try {
@@ -207,7 +219,8 @@ const onSubmit = handleSubmit(async (values) => {
   try {
     isLoading.value = true
     // eslint-disable-next-line no-unused-vars
-    const { datenschutzAkzeptiert, ...registerValues } = values
+    const { datenschutzAkzeptiert, nutzungsbedingungenAkzeptiert, weitereZustimmungAkzeptiert, ...registerValues } =
+      values
     await register({ ...registerValues, rolle_id: 2, gruppeId: gruppeId.value ?? undefined })
     router.replace({
       name: 'account-bestaetigen',

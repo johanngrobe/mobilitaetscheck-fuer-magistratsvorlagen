@@ -50,6 +50,11 @@ Erstelle eine `.env` Datei:
 cp env.example .env
 ```
 
+Setze `HOST_URL` auf die öffentlich erreichbare URL des Backends (z.B.
+`https://mobilitaetscheck.example.com`). Diese wird u.a. für Links in E-Mails sowie für die URLs
+hochgeladener Branding-Bilder (Logos, Favicon) verwendet – bleibt sie auf dem Standardwert
+`http://localhost:8000`, funktionieren diese Links außerhalb des Servers nicht.
+
 Über `BRANDING_UPLOAD_DIR` lässt sich der Speicherort für hochgeladene Branding-Bilder (Logos,
 Favicon) konfigurieren. Standardmäßig liegt er innerhalb des Backend-Verzeichnisses; bei Bedarf
 kann ein anderer (auch absoluter) Pfad gesetzt werden. Das Verzeichnis wird beim Start automatisch

@@ -30,7 +30,7 @@
             <code v-for="p in vorlage.platzhalter" :key="p" class="mr-2">{{ placeholderLabel(p) }}</code>
           </p>
 
-          <Editor v-model="vorlage.inhaltEdit" editorStyle="min-height: 280px" />
+          <RichContentEditor v-model="vorlage.inhaltEdit" editorStyle="min-height: 280px" />
 
           <div class="flex justify-end gap-2 mt-4">
             <Button
@@ -50,7 +50,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import Editor from 'primevue/editor'
+import RichContentEditor from '@/components/RichContentEditor.vue'
 import Button from 'primevue/button'
 import InputText from 'primevue/inputtext'
 import FloatLabel from 'primevue/floatlabel'

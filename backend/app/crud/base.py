@@ -366,10 +366,7 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         result = await db.execute(statement)
         instances = result.scalars().all()
 
-        if not instances:
-            raise NotFoundError(self.model.__name__, keys)
-
-            # Apply recursive in-memory sorting for nested attributes
+        # Apply recursive in-memory sorting for nested attributes
         # instances = self.sort(instances, sort_params)
 
         return instances
@@ -400,7 +397,10 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
 
         # Ensure the field exists in the model
         if not hasattr(self.model, field):
-            raise NotFoundError(message=f"Field '{field}' does not exist in the model.")
+            raise NotFoundError(
+                resource_type=self.model.__name__,
+                resource_id=f"field '{field}'",
+            )
 
         # Access the column from the model
         column_field = getattr(self.model, field)
@@ -423,11 +423,6 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         # Execute the query
         result = await db.execute(stmt)
         instances = result.scalars().all()
-
-        if not instances:
-            raise NotFoundError(
-                message=f"No distinct values found for field '{field}'",
-            )
 
         return instances
 

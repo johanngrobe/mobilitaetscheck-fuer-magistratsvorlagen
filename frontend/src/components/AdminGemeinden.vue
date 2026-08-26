@@ -155,8 +155,12 @@ const gemeindeSchema = yup.object({
   name: yup.string().required('Name ist erforderlich.').label('Name'),
   verwaltungEmailDomain: yup
     .string()
-    .required('E-Mail-Domain ist erforderlich.')
-    .matches(/^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, 'Ungültige Domain (z.B. oberursel.de).')
+    .nullable()
+    .transform((value) => (value === '' ? null : value))
+    .matches(/^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, {
+      message: 'Ungültige Domain (z.B. oberursel.de).',
+      excludeEmptyString: true
+    })
     .label('E-Mail-Domain')
 })
 
@@ -243,7 +247,7 @@ const submitCreate = handleCreate(async (values) => {
   try {
     await apiClient.post('/admin/gemeinde', {
       name: values.name,
-      verwaltung_email_domain: values.verwaltungEmailDomain
+      verwaltung_email_domain: values.verwaltungEmailDomain || null
     })
     toast.add({ severity: 'success', summary: 'Kommune angelegt', life: 3000 })
     createVisible.value = false

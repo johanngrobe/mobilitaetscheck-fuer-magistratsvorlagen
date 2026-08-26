@@ -2,14 +2,7 @@
   <div>
     <!-- Hero -->
     <div class="text-center py-10 px-4">
-      <div v-if="startseiteInhalt" class="max-w-2xl mx-auto mb-8" v-html="startseiteInhalt" />
-      <template v-else>
-        <h1 class="text-3xl font-bold mb-3">Mobilitätscheck für Magistratsvorlagen</h1>
-        <p class="text-gray-600 max-w-xl mx-auto mb-8">
-          Veröffentlichte Mobilitätschecks von Verwaltung und Kommunalpolitik einsehen – ohne
-          Anmeldung.
-        </p>
-      </template>
+      <div class="rich-content max-w-2xl mx-auto mb-8" v-html="startseiteInhalt" />
 
       <div class="flex flex-col items-center gap-2">
         <label class="font-semibold text-lg">Kommune auswählen</label>
@@ -131,22 +124,28 @@
 import { ref, computed, watch, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { apiClient } from '@/services/axios'
+import { useEinstellungStore } from '@/stores/einstellung'
 import BaseSpinner from '@/components/BaseSpinner.vue'
 import DataView from 'primevue/dataview'
 import InputText from 'primevue/inputtext'
 import Select from 'primevue/select'
 import Tag from 'primevue/tag'
+import { STARTSEITE_STANDARD_INHALT } from '@/utils/standardInhalte'
 
 const route = useRoute()
 const router = useRouter()
+const einstellungStore = useEinstellungStore()
 
 const gemeinden = ref([])
 const selectedGemeindeId = ref(null)
 const magistratsvorlagen = ref([])
 const searchQuery = ref('')
 const isLoadingGemeinden = ref(true)
-const startseiteInhalt = ref('')
 const isLoadingVorlagen = ref(false)
+
+const startseiteInhalt = computed(
+  () => einstellungStore.einstellung.startseiteInhalt || STARTSEITE_STANDARD_INHALT
+)
 
 const filteredVorlagen = computed(() => {
   const q = searchQuery.value.trim().toLowerCase()
@@ -178,17 +177,8 @@ const onGemeindeChange = () => {
   router.replace({ query: { gemeinde: selectedGemeindeId.value } })
 }
 
-const fetchStartseiteInhalt = async () => {
-  try {
-    const res = await apiClient.get('/public/plattform-einstellung')
-    startseiteInhalt.value = res.data.startseiteInhalt || ''
-  } catch {
-    startseiteInhalt.value = ''
-  }
-}
-
 onMounted(async () => {
-  await Promise.all([fetchGemeinden(), fetchStartseiteInhalt()])
+  await fetchGemeinden()
   const fromQuery = route.query.gemeinde ? Number(route.query.gemeinde) : null
   if (fromQuery) {
     selectedGemeindeId.value = fromQuery

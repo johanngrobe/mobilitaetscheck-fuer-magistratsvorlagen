@@ -23,6 +23,15 @@ class PlattformEinstellungBase(BaseModel):
     impressum_url: Optional[str] = Field(
         None, description="Externe URL des Impressums, falls impressum_modus='url'."
     )
+    nutzungsbedingungen_modus: RechtstextModus = Field(
+        "inhalt", description="Wie die Nutzungsbedingungen bereitgestellt werden."
+    )
+    nutzungsbedingungen_inhalt: Optional[str] = Field(
+        None, description="Nutzungsbedingungen (HTML), falls nutzungsbedingungen_modus='inhalt'."
+    )
+    nutzungsbedingungen_url: Optional[str] = Field(
+        None, description="Externe URL der Nutzungsbedingungen, falls nutzungsbedingungen_modus='url'."
+    )
     ueber_das_tool_inhalt: Optional[str] = Field(
         None, description="Inhalt (HTML) der Seite 'Über das Tool'."
     )
@@ -34,6 +43,7 @@ class PlattformEinstellungBase(BaseModel):
 class PlattformEinstellungUpdate(PlattformEinstellungBase):
     datenschutz_modus: Optional[RechtstextModus] = Field(None)
     impressum_modus: Optional[RechtstextModus] = Field(None)
+    nutzungsbedingungen_modus: Optional[RechtstextModus] = Field(None)
 
 
 class PlattformEinstellungRead(PlattformEinstellungBase):
