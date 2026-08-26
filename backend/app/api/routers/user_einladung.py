@@ -51,6 +51,10 @@ async def create_einladung(
     if is_politik and rolle.name != POLITIK_ROLLE_NAME:
         raise HTTPException(status_code=403, detail="Politik-Benutzer können nur Politik-Benutzer einladen")
 
+    # Only Platform-Admins may invite someone into the Admin (Systemadmin) role
+    if not is_platform_admin and rolle.name == ADMIN_ROLLE_NAME:
+        raise HTTPException(status_code=403, detail="Nur Systemadministratoren können neue Systemadministratoren einladen")
+
     if is_platform_admin:
         if obj_in.gemeinde_id is None:
             raise HTTPException(status_code=400, detail="gemeinde_id ist erforderlich")
@@ -63,7 +67,7 @@ async def create_einladung(
         target_gemeinde_name = target_gemeinde.name
     else:
         target_gemeinde_id = admin.gemeinde_id
-        invite_is_superuser = obj_in.is_superuser if admin.is_superuser else False
+        invite_is_superuser = obj_in.is_superuser if is_gemeinde_admin else False
         target_gemeinde_name = admin.gemeinde.name
 
     token = create_invite_token(

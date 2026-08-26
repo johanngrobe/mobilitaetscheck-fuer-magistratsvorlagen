@@ -2,14 +2,10 @@
   <div>
     <!-- Hero -->
     <div class="text-center py-10 px-4">
-      <div v-if="startseiteInhalt" class="max-w-2xl mx-auto mb-8" v-html="startseiteInhalt" />
-      <template v-else>
-        <h1 class="text-3xl font-bold mb-3">Mobilitätscheck für Magistratsvorlagen</h1>
-        <p class="text-gray-600 max-w-xl mx-auto mb-8">
-          Veröffentlichte Mobilitätschecks von Verwaltung und Kommunalpolitik einsehen – ohne
-          Anmeldung.
-        </p>
-      </template>
+      <div
+        class="max-w-2xl mx-auto mb-8"
+        v-html="startseiteInhalt || STARTSEITE_STANDARD_INHALT"
+      />
 
       <div class="flex flex-col items-center gap-2">
         <label class="font-semibold text-lg">Kommune auswählen</label>
@@ -136,6 +132,7 @@ import DataView from 'primevue/dataview'
 import InputText from 'primevue/inputtext'
 import Select from 'primevue/select'
 import Tag from 'primevue/tag'
+import { STARTSEITE_STANDARD_INHALT } from '@/utils/standardInhalte'
 
 const route = useRoute()
 const router = useRouter()

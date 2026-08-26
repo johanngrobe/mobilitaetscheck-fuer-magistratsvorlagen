@@ -40,9 +40,10 @@ class SetupCreate(BaseModel):
 @router.get("/setup-status")
 async def get_setup_status(db: AsyncSession = Depends(get_async_session)):
     result = await db.execute(
-        select(User)
+        select(User.id)
         .join(UserRolle, User.rolle_id == UserRolle.id)
         .where(User.is_superuser == True, UserRolle.name == ADMIN_ROLLE_NAME)
+        .limit(1)
     )
     admin = result.scalar_one_or_none()
     return {"needs_setup": admin is None}
@@ -56,9 +57,10 @@ async def setup(
 ):
     # Guard: only allowed if no Platform Admin exists yet
     result = await db.execute(
-        select(User)
+        select(User.id)
         .join(UserRolle, User.rolle_id == UserRolle.id)
         .where(User.is_superuser == True, UserRolle.name == ADMIN_ROLLE_NAME)
+        .limit(1)
     )
     if result.scalar_one_or_none() is not None:
         raise HTTPException(status_code=409, detail="Systemadministrator existiert bereits.")

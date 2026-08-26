@@ -82,6 +82,18 @@ async def get_gruppen(
         return []
 
 
+@router.post("/eigene", response_model=UserGruppeRead)
+async def create_eigene_gruppe(
+    obj_in: UserGruppeCreate,
+    db: AsyncSession = Depends(get_async_session),
+    user: User = Depends(current_active_user),
+):
+    """Allow any active user to create a group for their own Gemeinde/Rolle."""
+    obj_in.gemeinde_id = user.gemeinde_id
+    obj_in.rolle_id = user.rolle_id
+    return await crud_user_gruppe.create(db=db, obj_in=obj_in)
+
+
 @router.post("", response_model=UserGruppeRead)
 async def create_gruppe(
     obj_in: UserGruppeCreate,

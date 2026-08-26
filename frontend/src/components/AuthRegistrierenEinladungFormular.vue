@@ -68,7 +68,7 @@
           class="w-full"
           showClear
         />
-        <label for="gruppeId">{{ gruppeLabel }}</label>
+        <label for="gruppeId">Gruppe (optional)</label>
       </FloatLabel>
     </div>
 
@@ -125,6 +125,14 @@
     </div>
 
     <DatenschutzZustimmung v-model="datenschutzAkzeptiert" :error-message="errors.datenschutzAkzeptiert" />
+    <NutzungsbedingungenZustimmung
+      v-model="nutzungsbedingungenAkzeptiert"
+      :error-message="errors.nutzungsbedingungenAkzeptiert"
+    />
+    <WeitereZustimmung
+      v-model="weitereZustimmungAkzeptiert"
+      :error-message="errors.weitereZustimmungAkzeptiert"
+    />
 
     <Button label="Registrieren" type="submit" class="w-full" :loading="isSubmitting" />
   </form>
@@ -143,6 +151,8 @@ import Password from 'primevue/password'
 import Divider from 'primevue/divider'
 import Select from 'primevue/select'
 import DatenschutzZustimmung from '@/components/DatenschutzZustimmung.vue'
+import NutzungsbedingungenZustimmung from '@/components/NutzungsbedingungenZustimmung.vue'
+import WeitereZustimmung from '@/components/WeitereZustimmung.vue'
 import { apiClient } from '@/services/axios'
 import { useToast } from 'primevue/usetoast'
 
@@ -153,9 +163,6 @@ const inviteData = ref({})
 const gruppenOptionen = ref([])
 const gruppeId = ref(null)
 
-const gruppeLabel = computed(() =>
-  inviteData.value.rolleName === 'Politik' ? 'Fraktion / Partei (optional)' : 'Gruppe (optional)'
-)
 
 const toast = useToast()
 const route = useRoute()
@@ -171,6 +178,8 @@ const [nachname] = defineField('nachname')
 const [password] = defineField('password')
 const [confirmPassword] = defineField('confirmPassword')
 const [datenschutzAkzeptiert] = defineField('datenschutzAkzeptiert')
+const [nutzungsbedingungenAkzeptiert] = defineField('nutzungsbedingungenAkzeptiert')
+const [weitereZustimmungAkzeptiert] = defineField('weitereZustimmungAkzeptiert')
 
 onMounted(async () => {
   if (!token) {

@@ -51,7 +51,23 @@
             optionValue="id"
             class="w-full"
             showClear
-          />
+            filter
+            :filterFields="['name']"
+            @filter="onGruppeFilter"
+            @hide="gruppeFilterValue = ''"
+            :loading="isCreatingGruppe"
+          >
+            <template #emptyfilter>
+              <div
+                v-if="canCreateGruppe"
+                class="cursor-pointer px-2 py-1 hover:bg-gray-100 rounded"
+                @click="createGruppeInline"
+              >
+                + {{ gruppeFilterValue }}
+              </div>
+              <span v-else>Keine Ergebnisse gefunden.</span>
+            </template>
+          </Select>
           <label for="gruppeId">{{ gruppeLabel }}</label>
         </FloatLabel>
       </div>
@@ -78,16 +94,23 @@ const gemeindeName = ref('')
 const rolleName = ref('')
 const userRolleName = ref('')
 const gruppen = ref([])
+const gruppeFilterValue = ref('')
+const isCreatingGruppe = ref(false)
 
 const isVerwaltung = computed(() => userRolleName.value === 'Verwaltung')
 const isPolitik = computed(() => userRolleName.value === 'Politik')
 const canEditGruppe = computed(() => isVerwaltung.value || isPolitik.value)
+const canCreateGruppe = computed(() => isPolitik.value && gruppeFilterValue.value.trim().length > 0)
 const canEditEmail = computed(() => ['Politik', 'Admin'].includes(userRolleName.value))
-const gruppeLabel = computed(() => (isPolitik.value ? 'Fraktion / Partei' : 'Gruppe'))
+const gruppeLabel = computed(() => 'Gruppe')
 const gruppenOptions = computed(() => [
-  { id: null, name: isPolitik.value ? 'Keine Fraktion' : 'Keine Gruppe' },
+  { id: null, name: 'Keine Gruppe' },
   ...gruppen.value
 ])
+
+const onGruppeFilter = (event) => {
+  gruppeFilterValue.value = event.value
+}
 
 const { defineField, handleSubmit, errors, setFieldValue } = useForm({
   validationSchema: schema
@@ -99,6 +122,24 @@ const [nachname] = defineField('nachname')
 const [gruppeId] = defineField('gruppeId')
 
 const authStore = useAuthStore()
+const toast = useToast()
+
+const createGruppeInline = async () => {
+  const name = gruppeFilterValue.value.trim()
+  if (!name || isCreatingGruppe.value) return
+  isCreatingGruppe.value = true
+  try {
+    const res = await apiClient.post('/einstellungen/gruppe/eigene', { name })
+    gruppen.value = [...gruppen.value, res.data].sort((a, b) => a.name.localeCompare(b.name))
+    setFieldValue('gruppeId', res.data.id)
+    gruppeFilterValue.value = ''
+    toast.add({ severity: 'success', summary: 'Gruppe erstellt', life: 3000 })
+  } catch {
+    toast.add({ severity: 'error', summary: 'Fehler beim Erstellen der Gruppe', life: 3000 })
+  } finally {
+    isCreatingGruppe.value = false
+  }
+}
 
 onMounted(async () => {
   try {
@@ -133,8 +174,6 @@ onMounted(async () => {
     isLoading.value = false
   }
 })
-
-const toast = useToast()
 
 const onSubmit = handleSubmit(async (values) => {
   try {

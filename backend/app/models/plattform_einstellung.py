@@ -39,6 +39,18 @@ class PlattformEinstellung(Base):
     impressum_url: Mapped[Optional[str]] = mapped_column(
         nullable=True, comment="Externe URL des Impressums, falls impressum_modus='url'"
     )
+    nutzungsbedingungen_modus: Mapped[str] = mapped_column(
+        nullable=False,
+        default="inhalt",
+        server_default="inhalt",
+        comment="Wie die Nutzungsbedingungen bereitgestellt werden: 'inhalt' (HTML) oder 'url' (externer Link)",
+    )
+    nutzungsbedingungen_inhalt: Mapped[Optional[str]] = mapped_column(
+        nullable=True, comment="Nutzungsbedingungen (HTML), falls nutzungsbedingungen_modus='inhalt'"
+    )
+    nutzungsbedingungen_url: Mapped[Optional[str]] = mapped_column(
+        nullable=True, comment="Externe URL der Nutzungsbedingungen, falls nutzungsbedingungen_modus='url'"
+    )
     ueber_das_tool_inhalt: Mapped[Optional[str]] = mapped_column(
         nullable=True, comment="Inhalt (HTML) der Seite 'Über das Tool'"
     )

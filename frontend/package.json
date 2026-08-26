@@ -12,6 +12,13 @@
   },
   "dependencies": {
     "@primeuix/themes": "^1.0.0",
+    "@tiptap/extension-image": "^3.30.4",
+    "@tiptap/extension-link": "^3.30.4",
+    "@tiptap/extension-placeholder": "^3.30.4",
+    "@tiptap/extension-table": "^3.30.4",
+    "@tiptap/extension-underline": "^3.30.4",
+    "@tiptap/starter-kit": "^3.30.4",
+    "@tiptap/vue-3": "^3.30.4",
     "@vee-validate/yup": "^4.15.0",
     "@vueuse/core": "^10.11.1",
     "@vueuse/integrations": "^11.1.0",

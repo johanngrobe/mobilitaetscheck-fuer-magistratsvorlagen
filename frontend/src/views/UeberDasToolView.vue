@@ -3,36 +3,7 @@
     <BaseHeading>Über das Tool</BaseHeading>
 
     <BaseSpinner v-if="isLoading" />
-    <div v-else-if="inhalt" v-html="inhalt" />
-
-    <table v-else class="table-auto border-separate border-spacing-3">
-      <tbody>
-        <tr>
-          <td><strong>Projekt:</strong></td>
-          <td>Plattform für integrierte Mobilität in Oberursel (pimoo)</td>
-        </tr>
-
-        <tr>
-          <td class="align-top"><strong>Organisation:</strong></td>
-          <td>Hochschule RheinMain<br />Kurt-Schumacher-Ring 18<br />65197 Wiesbaden</td>
-        </tr>
-
-        <tr>
-          <td><strong>Ansprechpartner:</strong></td>
-          <td>Johann Grobe</td>
-        </tr>
-
-        <tr>
-          <td><strong>Email:</strong></td>
-          <td><a href="mailto:johanngrobe@hs-rm.de"></a>johann.grobe@hs-rm.de</td>
-        </tr>
-
-        <tr>
-          <td><strong>Telefon:</strong></td>
-          <td>+49 611 9495 - 1963</td>
-        </tr>
-      </tbody>
-    </table>
+    <div v-else v-html="inhalt || UEBER_DAS_TOOL_STANDARD_INHALT" />
 
     <div class="mt-8 border-t pt-6">
       <h2 class="text-lg font-bold">Entwickelt durch pimoo</h2>
@@ -85,6 +56,7 @@ import logoOberursel from '@/assets/logos/oberursel-logo.webp'
 import logoPimoo from '@/assets/logos/Pimoo-Logo-Primaer.png'
 import logoBmftr from '@/assets/logos/BMFTR.jpg'
 import logoFona from '@/assets/logos/FONA.jpg'
+import { UEBER_DAS_TOOL_STANDARD_INHALT } from '@/utils/standardInhalte'
 
 const isLoading = ref(false)
 const inhalt = ref('')

@@ -32,6 +32,7 @@ import { apiClient } from '@/services/axios'
 import { useToast } from 'primevue/usetoast'
 import { useConfirm } from 'primevue/useconfirm'
 import RichContentEditor from './RichContentEditor.vue'
+import { STARTSEITE_STANDARD_INHALT } from '@/utils/standardInhalte'
 
 const isLoading = ref(false)
 const isSaving = ref(false)
@@ -44,9 +45,9 @@ const fetchEinstellung = async () => {
   isLoading.value = true
   try {
     const res = await apiClient.get('/admin/einstellung')
-    inhalt.value = res.data.startseiteInhalt || ''
+    inhalt.value = res.data.startseiteInhalt || STARTSEITE_STANDARD_INHALT
   } catch {
-    inhalt.value = ''
+    inhalt.value = STARTSEITE_STANDARD_INHALT
   } finally {
     isLoading.value = false
   }

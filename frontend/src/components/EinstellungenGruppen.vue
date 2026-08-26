@@ -90,13 +90,13 @@
 
           <TabPanel value="politik">
             <div class="flex items-center justify-between mb-4 mt-2">
-              <h5 class="text-lg font-semibold">Fraktionen / Parteien</h5>
-              <Button icon="pi pi-plus" label="Neue Fraktion" @click="openCreate('Politik')" />
+              <h5 class="text-lg font-semibold">Gruppen</h5>
+              <Button icon="pi pi-plus" label="Neue Gruppe" @click="openCreate('Politik')" />
             </div>
             <BaseSpinner v-if="isLoading" />
             <DataTable v-else :value="politikGruppen" class="w-full">
               <template #empty>
-                <span class="text-gray-400 text-sm">Keine Fraktionen vorhanden.</span>
+                <span class="text-gray-400 text-sm">Keine Gruppen vorhanden.</span>
               </template>
               <Column field="name" header="Name" />
               <Column header="" style="width: 100px">
@@ -116,7 +116,7 @@
             <div v-else class="flex gap-3 overflow-x-auto pb-4 items-start">
               <div class="w-56 flex-shrink-0 bg-gray-50 rounded-lg p-3">
                 <div class="flex items-center gap-2 mb-3">
-                  <span class="text-sm font-semibold text-gray-500">Ohne Fraktion</span>
+                  <span class="text-sm font-semibold text-gray-500">Ohne Gruppe</span>
                   <span class="ml-auto text-xs bg-gray-200 text-gray-600 rounded-full px-2 py-0.5">
                     {{ groupUserLists['none-politik']?.length ?? 0 }}
                   </span>
@@ -307,7 +307,7 @@ const verwaltungGruppeSelectOptions = computed(() => [
 ])
 
 const politikGruppeSelectOptions = computed(() => [
-  { id: null, name: 'Keine Fraktion' },
+  { id: null, name: 'Keine Gruppe' },
   ...politikGruppen.value,
 ])
 

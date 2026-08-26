@@ -41,6 +41,12 @@ const router = createRouter({
       meta: { requiresAuth: false }
     },
     {
+      path: '/nutzungsbedingungen',
+      name: 'nutzungsbedingungen',
+      component: () => import('@/views/NutzungsbedingungenView.vue'),
+      meta: { requiresAuth: false }
+    },
+    {
       path: '/ueber-das-tool',
       name: 'ueber-das-tool',
       // route level code-splitting
@@ -254,6 +260,11 @@ const router = createRouter({
           path: 'datenschutz',
           name: 'admin-datenschutz',
           component: () => import('@/views/AdminDatenschutzView.vue')
+        },
+        {
+          path: 'nutzungsbedingungen',
+          name: 'admin-nutzungsbedingungen',
+          component: () => import('@/views/AdminNutzungsbedingungenView.vue')
         },
         {
           path: 'email-vorlagen',

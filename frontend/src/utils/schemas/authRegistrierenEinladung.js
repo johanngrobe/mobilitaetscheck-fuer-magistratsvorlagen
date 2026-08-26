@@ -23,5 +23,15 @@ export const schema = yup.object({
     .boolean()
     .oneOf([true], 'Bitte stimmen Sie der Datenschutzerklärung zu.')
     .required('Bitte stimmen Sie der Datenschutzerklärung zu.')
-    .label('Datenschutzerklärung')
+    .label('Datenschutzerklärung'),
+  nutzungsbedingungenAkzeptiert: yup
+    .boolean()
+    .oneOf([true], 'Bitte stimmen Sie den Nutzungsbedingungen zu.')
+    .required('Bitte stimmen Sie den Nutzungsbedingungen zu.')
+    .label('Nutzungsbedingungen'),
+  weitereZustimmungAkzeptiert: yup
+    .boolean()
+    .oneOf([true], 'Bitte stimmen Sie zu.')
+    .required('Bitte stimmen Sie zu.')
+    .label('Weitere Zustimmung')
 })
