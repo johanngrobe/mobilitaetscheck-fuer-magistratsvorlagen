@@ -3,7 +3,7 @@
     <BaseHeading>Über das Tool</BaseHeading>
 
     <BaseSpinner v-if="isLoading" />
-    <div v-else v-html="inhalt || UEBER_DAS_TOOL_STANDARD_INHALT" />
+    <div v-else class="rich-content" v-html="inhalt || UEBER_DAS_TOOL_STANDARD_INHALT" />
 
     <div class="mt-8 border-t pt-6">
       <h2 class="text-lg font-bold">Entwickelt durch pimoo</h2>

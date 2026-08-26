@@ -12,7 +12,7 @@
       <BaseCard class="p-2">
         <div class="text-center mb-8">
           <AuthLogoLeiste />
-          <h1 class="text-xl font-bold text-gray-800">Mobilitätscheck</h1>
+          <h1 class="text-xl font-bold text-gray-800 my-0 ">Mobilitätscheck</h1>
           <p class="text-sm text-gray-500">für Magistratsvorlagen</p>
         </div>
 

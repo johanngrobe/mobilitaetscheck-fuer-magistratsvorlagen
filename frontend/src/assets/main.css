@@ -11,6 +11,62 @@
   }
 }
 
+.rich-content h1 {
+  @apply text-3xl font-bold mb-2 mt-4 text-blue md:text-4xl dark:text-white;
+}
+
+.rich-content h2 {
+  @apply text-2xl font-bold mb-2 mt-4 text-blue md:text-3xl dark:text-white;
+}
+
+.rich-content h3 {
+  @apply text-lg font-bold mb-2 mt-4 text-blue dark:text-white;
+}
+
+.rich-content p {
+  @apply mb-2;
+}
+
+.rich-content ul {
+  @apply list-disc pl-6 mb-2;
+}
+
+.rich-content ol {
+  @apply list-decimal pl-6 mb-2;
+}
+
+.rich-content blockquote {
+  @apply border-l-4 border-gray-300 pl-4 italic text-gray-600 mb-2;
+}
+
+.rich-content a {
+  @apply text-blue-600 underline;
+}
+
+.rich-content img {
+  @apply max-w-full;
+}
+
+.rich-content table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.rich-content table td,
+.rich-content table th {
+  border: 1px solid #d1d5db;
+  padding: 0.375rem 0.5rem;
+  vertical-align: top;
+}
+
+.rich-content table th {
+  font-weight: 600;
+  background-color: #f9fafb;
+  text-align: left;
+}
+
 /* Primary and Surface Palettes */
 :root {
   --p-primary-50: var(--p-surface-50);

@@ -5,13 +5,13 @@
     <BaseSpinner v-if="isLoading" />
     <div v-else-if="modus === 'url' && url">
       <p>
-        Die Datenschutzerklärung finden Sie unter folgendem Link:
+        Sie werden weitergeleitet zu:
         <a class="text-blue-600 hover:underline" :href="url" target="_blank" rel="noopener noreferrer">{{
           url
         }}</a>
       </p>
     </div>
-    <div v-else-if="inhalt" v-html="inhalt" />
+    <div v-else-if="inhalt" class="rich-content" v-html="inhalt" />
     <p v-else class="text-gray-400">Keine Datenschutzerklärung hinterlegt.</p>
   </div>
 </template>
@@ -32,6 +32,9 @@ onMounted(async () => {
     modus.value = res.data.datenschutzModus || 'inhalt'
     inhalt.value = res.data.datenschutzerklaerung || ''
     url.value = res.data.datenschutzUrl || ''
+    if (modus.value === 'url' && url.value) {
+      window.location.href = url.value
+    }
   } catch {
     modus.value = 'inhalt'
     inhalt.value = ''
