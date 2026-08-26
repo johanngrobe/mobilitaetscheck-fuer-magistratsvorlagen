@@ -10,7 +10,10 @@ export default defineConfig({
   plugins: [vue(), svgLoader()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      'axios-case-converter': fileURLToPath(
+        new URL('./node_modules/axios-case-converter/es/index.js', import.meta.url)
+      )
     }
   }
 })
