@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-start justify-center pt-12 px-4">
-    <div class="w-full max-w-md">
+    <div class="w-full max-w-lg">
       <BaseCard class="p-2">
         <div class="text-center mb-8">
           <AuthLogoLeiste />
