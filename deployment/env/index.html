@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -789,6 +789,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#branding-uploads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🖼️ Branding &amp; Uploads
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#datenbank-einstellungen" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -968,9 +979,32 @@ Sie können in einer <code>.env</code> Datei oder über das Deployment-System ge
 <td><code>"http://localhost:5173"</code></td>
 </tr>
 <tr>
+<td><code>HOST_URL</code></td>
+<td>Öffentlich erreichbare URL des Backends (ohne abschließenden Slash). Wird für Links in E-Mails sowie für URLs hochgeladener Branding-Bilder verwendet – in Produktion <strong>unbedingt</strong> auf die tatsächliche Domain setzen.</td>
+<td><code>"http://localhost:8000"</code></td>
+</tr>
+<tr>
 <td><code>ENVIRONMENT</code></td>
 <td>Betriebsmodus (<code>development</code>, <code>production</code>, …)</td>
 <td><code>"production"</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="branding-uploads">🖼️ Branding &amp; Uploads</h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Beschreibung</th>
+<th>Standard/Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BRANDING_UPLOAD_DIR</code></td>
+<td>Verzeichnis für hochgeladene Branding-Bilder (Logos, Favicon). Relativ zum Backend-Arbeitsverzeichnis oder absolut. Wird beim Start automatisch angelegt.</td>
+<td><code>"./uploads/branding"</code></td>
 </tr>
 </tbody>
 </table>

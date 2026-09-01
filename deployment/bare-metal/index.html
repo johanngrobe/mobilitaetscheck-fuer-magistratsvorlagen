@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -1058,8 +1058,16 @@
 <hr />
 <h2 id="3-umgebungsvariablen-konfigurieren">3. Umgebungsvariablen konfigurieren</h2>
 <p>Erstelle eine <code>.env</code> Datei:</p>
-<pre><code class="language-bash">cp example.env .env
+<pre><code class="language-bash">cp env.example .env
 </code></pre>
+<p>Setze <code>HOST_URL</code> auf die öffentlich erreichbare URL des Backends (z.B.
+<code>https://mobilitaetscheck.example.com</code>). Diese wird u.a. für Links in E-Mails sowie für die URLs
+hochgeladener Branding-Bilder (Logos, Favicon) verwendet – bleibt sie auf dem Standardwert
+<code>http://localhost:8000</code>, funktionieren diese Links außerhalb des Servers nicht.</p>
+<p>Über <code>BRANDING_UPLOAD_DIR</code> lässt sich der Speicherort für hochgeladene Branding-Bilder (Logos,
+Favicon) konfigurieren. Standardmäßig liegt er innerhalb des Backend-Verzeichnisses; bei Bedarf
+kann ein anderer (auch absoluter) Pfad gesetzt werden. Das Verzeichnis wird beim Start automatisch
+angelegt, muss aber für den Benutzer beschreibbar sein, unter dem der Backend-Dienst läuft.</p>
 <hr />
 <h2 id="4-frontend-installieren-und-builden">4. Frontend installieren und builden</h2>
 <p>Das Frontend basiert auf <strong>Vite</strong> und muss lokal gebaut werden.</p>
